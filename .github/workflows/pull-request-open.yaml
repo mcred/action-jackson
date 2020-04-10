@@ -52,5 +52,5 @@ jobs:
           -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
           -H "Content-Type: application/json" \
           -d '
-            {"body": "[Action Jackson App Preview](http://github-pr-'"$BUILD_ID"'-cloud.s3-website.us-east-2.amazonaws.com)"
+            {"body": "[Action Jackson App Preview](http://github-pr-'"$BUILD_ID"'.s3-website.us-east-2.amazonaws.com)"
           }' $(jq -r '.pull_request._links.comments.href' $GITHUB_EVENT_PATH)
