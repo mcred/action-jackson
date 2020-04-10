@@ -10,7 +10,7 @@ jobs:
     name: Preview UI Changes
     runs-on: ubuntu-18.04
     steps:
-      - run: jq '.pull_request.base.name' $GITHUB_EVENT_PATH
+      - run: jq '.pull_request.base.repo.name' $GITHUB_EVENT_PATH
 #      - uses: actions/checkout@v2
 #
 #      - name: Get yarn cache
