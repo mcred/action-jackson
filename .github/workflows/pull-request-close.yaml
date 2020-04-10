@@ -21,6 +21,6 @@ jobs:
 
       - name: Remove from S3
         run: |
-          export REPO_NAME=$(jq '.pull_request.base.repo.name' $GITHUB_EVENT_PATH)
+          export REPO_NAME=$(jq -r '.pull_request.base.repo.name' $GITHUB_EVENT_PATH)
           export BUILD_ID=$(jq '.number' $GITHUB_EVENT_PATH)
           ./scripts/aws/remove-preview-bucket.sh "$REPO_NAME-pr-$BUILD_ID"

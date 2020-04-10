@@ -36,7 +36,7 @@ jobs:
 
       - name: Publish to S3
         run: |
-          export REPO_NAME=$(jq '.pull_request.base.repo.name' $GITHUB_EVENT_PATH)
+          export REPO_NAME=$(jq -r '.pull_request.base.repo.name' $GITHUB_EVENT_PATH)
           export BUILD_ID=$(jq '.number' $GITHUB_EVENT_PATH)
           ./scripts/aws/create-preview-bucket.sh "$REPO_NAME-pr-$BUILD_ID" us-east-2
           ./scripts/aws/upload-preview-bucket.sh "$REPO_NAME-pr-$BUILD_ID"
@@ -48,7 +48,7 @@ jobs:
     steps:
       - name: Create comment with links
         run: |
-          export REPO_NAME=$(jq '.pull_request.base.repo.name' $GITHUB_EVENT_PATH)
+          export REPO_NAME=$(jq -r '.pull_request.base.repo.name' $GITHUB_EVENT_PATH)
           export BUILD_ID=$(jq '.number' $GITHUB_EVENT_PATH)
           curl -X POST \
           -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
