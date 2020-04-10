@@ -37,7 +37,7 @@ jobs:
       - name: Publish to S3
         run: |
           export BUILD_ID=$(jq '.number' $GITHUB_EVENT_PATH)
-          ./scripts/aws/create-preview-bucket.sh "github-pr-$BUILD_ID-cloud" us-east-2
+          ./scripts/aws/create-preview-bucket.sh "github-pr-$BUILD_ID" us-east-2
           ./scripts/aws/upload-preview-bucket.sh "github-pr-$BUILD_ID"
 
   output:
