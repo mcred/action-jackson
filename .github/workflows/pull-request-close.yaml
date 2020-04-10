@@ -12,7 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -23,4 +22,4 @@ jobs:
       - name: Remove from S3
         run: |
           export BUILD_ID=$(jq '.number' $GITHUB_EVENT_PATH)
-          ./tools/aws/remove-preview-bucket.sh "github-pr-$BUILD_ID"
+          ./scripts/aws/remove-preview-bucket.sh "github-pr-$BUILD_ID"
