@@ -25,3 +25,11 @@ In the S3 management console, create a CLI user that has full S3 access. Set up 
 ./scripts/aws/upload-preview-bucket.sh *BUCKET_NAME*
 ./scripts/aws/remove-preview-bucket.sh *BUCKET_NAME*
 ```
+
+## Github Actions
+In the Settings>Secrets, add `AWS_KEY` and `AWS_SECRET` with values from the S3 Deployment and Management Step. 
+
+The following triggers are used:
+*   Pull Request Open: Build App, Create S3 Bucket, and Preview App in S3 bucket
+*   Pull Request Sync: Build App, Upload to Bucket
+*   Pull Request Close: Destroy S3 Bucket
